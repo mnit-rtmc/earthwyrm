@@ -1,27 +1,22 @@
-[package]
-name = "earthwyrm"
-version = "0.3.0"
-authors = ["Douglas Lau <doug.lau@state.mn.us>"]
-description = "Vector tile map server for openstreetmap data"
-license = "MIT OR Apache-2.0"
-documentation = "https://docs.rs/earthwyrm"
-homepage = "https://github.com/DougLau/earthwyrm"
-repository = "https://github.com/DougLau/earthwyrm"
-readme = "README.md"
-keywords = ["cartography", "gis", "osm", "server"]
-edition = "2018"
+[workspace]
+members = ["earthwyrm", "earthwyrm-bin"]
+resolver = "2"
 
-[dependencies]
-env_logger = "0.6"
-fallible-iterator = "0.1"
+[workspace.package]
+version = "0.5.0"
+edition = "2021"
+
+[workspace.dependencies]
+earthwyrm = "0.5"
 log = "0.4"
-mvt = "0.5"
-postgis = "0.6"
-postgres = "0.15"
-r2d2 = "0.8"
-r2d2_postgres = "0.14"
+muon-rs = "0.2"
+mvt = "0.9"
+pointy = "0.5"
+rosewood = "0.2"
 serde = "1.0"
 serde_derive = "1.0"
-toml = "0.4"
-warp = "0.1"
-whoami = "0.5"
+
+[patch.crates-io]
+loam = { path = "../loam" }
+rosewood = { path = "../loam" }
+earthwyrm = { path = "earthwyrm" }

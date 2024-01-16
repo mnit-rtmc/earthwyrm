@@ -1,0 +1,21 @@
+[package]
+name = "earthwyrm"
+description = "Vector tile map server for openstreetmap data"
+license = "MIT OR Apache-2.0"
+documentation = "https://docs.rs/earthwyrm"
+repository = "https://github.com/DougLau/earthwyrm/earthwyrm"
+readme = "README.md"
+keywords = ["cartography", "gis", "osm", "server"]
+version.workspace = true
+edition.workspace = true
+
+[dependencies]
+loam = "0.2"
+log = { workspace = true }
+muon-rs = { workspace = true }
+mvt = { workspace = true }
+osmpbfreader = "0.16"
+pointy = { workspace = true }
+rosewood = { workspace = true }
+serde = { workspace = true }
+serde_derive = { workspace = true }

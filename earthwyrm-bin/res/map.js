@@ -3,7 +3,6 @@ function init_map() {
         center: [45, -93],
         zoom: 12,
     });
-    // Replace host IP address
     var url = "http://127.0.0.1:3030/tile/{z}/{x}/{y}.mvt";
     var highlight_style = {
         fill: true,
@@ -17,7 +16,7 @@ function init_map() {
         fill: true,
         fillOpacity: 0.2,
         weight: 0.1,
-        color: '#000000',
+        color: '#000',
         opacity: 0.6,
     };
     var water = {
@@ -37,7 +36,15 @@ function init_map() {
         fillOpacity: 0.6,
         fillColor: "#88cc88",
         weight: 0.1,
-        color: '#000000',
+        color: '#000',
+        opacity: 0.6,
+    };
+    var cemetery = {
+        fill: true,
+        fillOpacity: 0.6,
+        fillColor: "#aaccaa",
+        weight: 0.1,
+        color: '#000',
         opacity: 0.6,
     };
     var building = {
@@ -45,7 +52,7 @@ function init_map() {
         fillOpacity: 0.7,
         fillColor: "#bca9a9",
         weight: 0.7,
-        color: "#bca9a9",
+        color: "#baa",
     };
     var retail = {
         fill: true,
@@ -59,6 +66,19 @@ function init_map() {
         fillColor: "#cca",
         stroke: false,
     };
+    var paths = {
+        color: '#000',
+        opacity: 0.5,
+        weight: 1,
+        dashArray: "1 3",
+    };
+    var railways = {
+        color: '#642',
+        opacity: 0.6,
+        weight: 2.5,
+        lineCap: "butt",
+        dashArray: "1 1.5",
+    };
     var styles = {
         county: Object.assign(boundary, { fillColor: '#f8f4f2' }),
         city: Object.assign(boundary, { fillColor: '#f1eee8' }),
@@ -66,16 +86,18 @@ function init_map() {
         river: water,
         water: water,
         pond: water,
-        basin: water,
         wetland: wetland,
         leisure: leisure,
+        cemetery: cemetery,
         retail: retail,
-        motorway: { color: "#ffd9a9", weight: 6 },
+        motorway: { color: "#ffd9a9", weight: 3 },
         trunk: { color: "#ffe0a9" },
         primary: { color: "#ffeaa9" },
         secondary: { color: "#fff4a9" },
         tertiary: { color: "#ffffa9" },
-        roads: { color: "#eee", opacity: 0.8 },
+        roads: { color: "#eee", weight: 2 },
+        paths: paths,
+        railways: railways,
         building: building,
         parking: parking,
     };
@@ -101,7 +123,7 @@ function init_map() {
         if (change) {
             highlight = osm_id;
             layers.setFeatureStyle(highlight, highlight_style);
-            var name = e.layer.properties.name;
+            var name = e.layer.properties.ref || e.layer.properties.name;
             if (typeof name != "undefined") {
                 L.popup({ closeButton: false})
                  .setContent(name)
